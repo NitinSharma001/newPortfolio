@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects - My Portfolio</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome CDN for Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Adjust body padding to avoid content overlap with fixed navbar */
+      body {
+        padding-top: 70px; /* Height of the navbar */
+        transition: opacity 0.3s ease; /* Smooth transition for opacity */
+        opacity: 1; /* Initial opacity */
+      }
+
+      /* Navbar Custom Styling */
+      .navbar-custom {
+        background: linear-gradient(
+          45deg,
+          #4a90e2,
+          #8e44ad
+        ); /* Blue to Violet Gradient */
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px 0; /* Consistent padding */
+        height: 70px; /* Fixed height to prevent fluctuation */
+      }
+
+      /* Transparent Navbar on Scroll (Removed) */
+      .navbar-transparent {
+        background: rgba(255, 255, 255, 0);
+        transition: background-color 0.3s ease;
+        box-shadow: none;
+      }
+
+      /* Navbar Links Styling */
+      .navbar-nav .nav-link {
+        color: white;
+        font-size: 1.1rem;
+        font-weight: bold;
+        position: relative;
+        transition: color 0.3s ease;
+        padding: 10px 15px; /* Consistent padding */
+      }
+
+      /* Link Hover Effect */
+      .navbar-nav .nav-link:hover {
+        color: #fff;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      .navbar-nav .nav-link:hover::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: white;
+        bottom: 0; /* Position at the bottom of the link */
+        left: 0;
+        transition: width 0.3s ease;
+        width: 100%;
+      }
+
+      /* Active Link Styling */
+      .navbar-nav .nav-item.active .nav-link {
+        color: #fff;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Search Bar Styling */
+      .navbar .search-box {
+        position: relative;
+      }
+
+      .navbar .search-box input {
+        padding: 7px 12px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      .navbar .search-box input:focus {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Add Icon to Navbar Items */
+      .navbar-nav .nav-item .fa {
+        margin-right: 8px;
+      }
+
+      /* Projects Section */
+      .projects-section {
+        padding: 50px 20px; /* Padding for the section */
+        background-color: #f8f9fa; /* Light background color */
+      }
+
+      .project-card {
+        background-color: white; /* White background for project cards */
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+        transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+        margin-bottom: 30px; /* Space between cards */
+        overflow: hidden; /* Ensure content fits within card */
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px); /* Lift effect on hover */
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+      }
+
+      .project-card img {
+        width: 100%; /* Full width for images */
+        height: 200px; /* Fixed height for images */
+        object-fit: cover; /* Cover aspect ratio */
+      }
+
+      .project-card h3 {
+        padding: 15px; /* Padding for title */
+        font-size: 1 5rem; /* Title size */
+      }
+
+      .project-card p {
+        padding: 0 15px 15px; /* Padding for description */
+        color: #555; /* Text color */
+      }
+
+      /* Responsive Styling */
+      @media (max-width: 576px) {
+        .project-card {
+          margin-bottom: 20px; /* Adjust margin for small screens */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">My Portfolio</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"
+                ><i class="fa fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html"
+                ><i class="fa fa-user"></i> About Me</a
+              >
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#"
+                ><i class="fa fa-folder"></i> Projects</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html"
+                ><i class="fa fa-envelope"></i> Contact</a
+              >
+            </li>
+          </ul>
+          <!-- Search Bar -->
+          <div class="search-box ml-3">
+            <input type="text" class="form-control" placeholder="Search..." />
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Projects Section Start -->
+    <div class="projects-section">
+      <div class="container">
+        <h2 class="text-center mb-4">My Projects</h2>
+        <div class="row">
+          <!-- Project Card Example 1 -->
+          <div class="col-md-4">
+            <div class="project-card">
+              <img src="project.jpg" alt="Project 1" />
+              <h3>Project Title 1</h3>
+              <p>This project involves... (brief description)</p>
+            </div>
+          </div>
+          <!-- Project Card Example 2 -->
+          <div class="col-md-4">
+            <div class="project-card">
+              <img src="project2.jpg" alt="Project 2" />
+              <h3>Project Title 2</h3>
+              <p>This project includes... (brief description)</p>
+            </div>
+          </div>
+          <!-- Project Card Example 3 -->
+          <div class="col-md-4">
+            <div class="project-card">
+              <img src="project3.jpg" alt="Project 3" />
+              <h3>Project Title 3</h3>
+              <p>This project features... (brief description)</p>
+            </div>
+          </div>
+          <!-- Project Card Example 4 -->
+          <div class="col-md-4">
+            <div class="project-card">
+              <img src="project2.jpg" alt="Project 4" />
+              <h3>Project Title 4</h3>
+              <p>This project involves... (brief description)</p>
+            </div>
+          </div>
+          <!-- Project Card Example 5 -->
+          <div class="col-md-4">
+            <div class="project-card">
+              <img src="project.jpg" alt="Project 5" />
+              <h3>Project Title 5</h3>
+              <p>This project includes... (brief description)</p>
+            </div>
+          </div>
+          <!-- Project Card Example 6 -->
+          <div class="col-md-4">
+            <div class="project-card">
+              <img src="project3.jpg" alt="Project 6" />
+              <h3>Project Title 6</h3>
+              <p>This project features... (brief description)</p>
+            </div>
+          </div>
+          <!-- Project Card Example 7 -->
+          <div class="col-md-4">
+            <div class="project-card">
+              <img src="project2.jpg" alt="Project 7" />
+              <h3>Project Title 7</h3>
+              <p>This project involves... (brief description)</p>
+            </div>
+          </div>
+          <!-- Add more project cards as needed -->
+        </div>
+      </div>
+    </div>
+    <!-- Projects Section End -->
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.2.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(event) {
+              event.preventDefault(); // Prevent the default link behavior
+              const targetUrl = this.getAttribute('href');
+          
+              // Fade out effect
+              document.body.style.opacity = '0';
+          
+              setTimeout(() => {
+                window.location.href = targetUrl; // Redirect after fading out
+              }, 300); // Match this with the CSS transition duration
+            });
+          });
+          
+          // Ensure body is fully opaque when the page loads
+          window.onload = () => {
+            document.body.style.opacity = '1';
+          };
+    </script>
+  </body>
+</html>

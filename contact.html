@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio with Hero Section</title>
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome CDN for Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Adjust body padding to avoid content overlap with fixed navbar */
+    body {
+      padding-top: 70px; /* Height of the navbar */
+      background-image: url('project3.jpg'); /* Add your image path */
+      background-size: cover; /* Ensure the image covers the entire viewport */
+      background-position: center; /* Center the background image */
+      background-repeat: no-repeat; /* Prevent image repetition */
+      background-attachment: fixed; /* Make the background image fixed during scrolling */
+      height: 100vh; /* Ensure body height is 100% of the viewport */
+      margin: 0; /* Remove any default margins */
+      transition: opacity 0.3s ease; /* Smooth transition for opacity */
+      opacity: 1; /* Initial opacity */
+    }
+
+    /* Navbar Custom Styling */
+    .navbar-custom {
+      background: linear-gradient(45deg, #4a90e2, #8e44ad); /* Blue to Violet Gradient */
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px 0; /* Consistent padding */
+      height: 70px; /* Fixed height to prevent fluctuation */
+    }
+
+    /* Navbar Links Styling */
+    .navbar-nav .nav-link {
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s ease;
+      padding: 10px 15px; /* Consistent padding */
+    }
+
+    /* Link Hover Effect */
+    .navbar-nav .nav-link:hover {
+      color: #fff;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar-nav .nav-link:hover::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: white;
+      bottom: 0; /* Position at the bottom of the link */
+      left: 0;
+      transition: width 0.3s ease;
+      width: 100%;
+    }
+
+    /* Active Link Styling */
+    .navbar-nav .nav-item.active .nav-link {
+      color: #fff;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Search Bar Styling */
+    .navbar .search-box {
+      position: relative;
+    }
+
+    .navbar .search-box input {
+      padding: 7px 12px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .navbar .search-box input:focus {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Keyframes for animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* 3D Effect for Contact Form */
+    .contact-form {
+      width: 33.33%; /* One-third of the page width */
+      margin: 40px auto; /* Center the form horizontally */
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+      border: none; /* No border */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(255, 255, 255, 0.5); /* 3D shadow effect */
+      border-radius: 15px; /* Rounded corners */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for 3D effect */
+    }
+
+    /* Hover Effect for Contact Form */
+    .contact-form:hover {
+      transform: translateY(-5px) scale(1.02); /* Slight lift and scale effect */
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Deeper shadow on hover */
+    }
+
+    /* Styling for Input and Textarea Fields */
+    .contact-form .form-control {
+      margin-bottom: 20px;
+      border: none; /* Remove border */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 3D shadow effect */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    }
+
+    /* Focus Effect for Fields */
+    .contact-form .form-control:focus {
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Highlight effect */
+      transform: translateY(-2px); /* Slight lift effect */
+    }
+
+    .contact-form .btn-primary {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: #4a90e2; /* Same color as navbar */
+      color: white;
+      border: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .contact-form .btn-primary:hover {
+      background-color: #3e8e41; /* Darker background on hover */
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="#">My Portfolio</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html"><i class="fa fa-home"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html"><i class="fa fa-user"></i> About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="myProjects.html"><i class="fa fa-folder"></i> Projects</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#contact"><i class="fa fa-envelope"></i> Contact</a>
+          </li>
+        </ul>
+        <!-- Search Bar -->
+        <div class="search-box ml-3">
+          <input type="text" placeholder="Search..." />
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar End -->
+
+  <!-- Contact Form Start -->
+  <div class="contact-form">
+    <h2>Contact Me</h2>
+    <form>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter your email">
+      </div>
+      <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea class="form-control" id="message" rows="4" placeholder="Your message..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <!-- Contact Form End -->
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(event) {
+          event.preventDefault(); // Prevent the default link behavior
+          const targetUrl = this.getAttribute('href');
+      
+          // Fade out effect
+          document.body.style.opacity = '0';
+      
+          setTimeout(() => {
+            window.location.href = targetUrl; // Redirect after fading out
+          }, 300); // Match this with the CSS transition duration
+        });
+      });
+      
+      // Ensure body is fully opaque when the page loads
+      window.onload = () => {
+        document.body.style.opacity = '1';
+      };
+  </script>
+</body>
+</html>
