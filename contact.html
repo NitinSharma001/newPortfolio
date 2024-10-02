@@ -11,7 +11,7 @@
   <style>
     /* Adjust body padding to avoid content overlap with fixed navbar */
     body {
-      padding-top: 70px; /* Height of the navbar */
+      padding-top: 70px; /* Default padding for the navbar */
       background-image: url('project3.jpg'); /* Add your image path */
       background-size: cover; /* Ensure the image covers the entire viewport */
       background-position: center; /* Center the background image */
@@ -83,30 +83,10 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    /* Keyframes for animations */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateY(-20px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    /* 3D Effect for Contact Form */
+    /* Contact Form Styling */
     .contact-form {
-      width: 33.33%; /* One-third of the page width */
+      width: 50%; /* Default width */
+      max-width: 600px; /* Set max width */
       margin: 40px auto; /* Center the form horizontally */
       padding: 20px;
       background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
@@ -150,6 +130,32 @@
     .contact-form .btn-primary:hover {
       background-color: #3e8e41; /* Darker background on hover */
       transform: translateY(-2px);
+    }
+
+    /* Responsive Styling */
+    @media (max-width: 768px) {
+      .contact-form {
+        width: 70%; /* Adjust width for tablet */
+      }
+    }
+
+    @media (max-width: 576px) {
+      .contact-form {
+        width: 90%; /* Adjust width for mobile */
+        padding: 15px; /* Reduce padding on mobile */
+      }
+
+      .contact-form h2 {
+        font-size: 1.5rem; /* Adjust heading size on mobile */
+      }
+
+      .contact-form .form-control {
+        font-size: 1rem; /* Adjust input font size */
+      }
+
+      .contact-form .btn-primary {
+        font-size: 1rem; /* Adjust button font size */
+      }
     }
   </style>
 </head>
@@ -215,23 +221,44 @@
 
   <script>
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(event) {
-          event.preventDefault(); // Prevent the default link behavior
-          const targetUrl = this.getAttribute('href');
+      link.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        const targetUrl = this.getAttribute('href');
       
-          // Fade out effect
-          document.body.style.opacity = '0';
+        // Fade out effect
+        document.body.style.opacity = '0';
       
-          setTimeout(() => {
-            window.location.href = targetUrl; // Redirect after fading out
-          }, 300); // Match this with the CSS transition duration
-        });
+        setTimeout(() => {
+          window.location.href = targetUrl; // Redirect after fading out
+        }, 300); // Match this with the CSS transition duration
       });
-      
-      // Ensure body is fully opaque when the page loads
-      window.onload = () => {
-        document.body.style.opacity = '1';
-      };
+    });
+    
+    // Ensure body is fully opaque when the page loads
+    window.onload = () => {
+      document.body.style.opacity = '1';
+    };
+
+    // Adjust padding to ensure form stays below navbar when expanded
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const body = document.querySelector('body');
+
+    navbarToggler.addEventListener('click', () => {
+      if (navbarToggler.getAttribute('aria-expanded') === 'false') {
+        body.style.paddingTop = '250px'; // Increase padding when navbar expands
+      } else {
+        body.style.paddingTop = '70px'; // Reset padding when navbar collapses
+      }
+    });
+
+    // Collapse navbar on outside click (optional)
+    document.addEventListener('click', function(event) {
+      const isClickInside = navbarToggler.contains(event.target) || document.querySelector('.navbar-collapse').contains(event.target);
+      if (!isClickInside) {
+        body.style.paddingTop = '70px';
+        document.querySelector('.navbar-collapse').classList.remove('show');
+      }
+    });
   </script>
 </body>
 </html>

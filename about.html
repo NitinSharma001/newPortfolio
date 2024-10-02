@@ -25,17 +25,19 @@
 
       /* Flex container for About and Tech Stack sections */
       .about-section {
-        display: flex; /* Make sections horizontal */
+        display: flex; /* Make sections horizontal on larger screens */
         align-items: stretch; /* Stretch to equal height */
         min-height: 100vh; /* Ensure it covers the full viewport height */
         justify-content: center; /* Center sections in the container */
         padding: 20px; /* Add padding around the section */
+        flex-direction: row; /* Default direction for larger screens */
       }
 
       /* Custom Styling for About Section */
-      .about-content {
+      .about-content,
+      .tech-stack {
         flex: 1; /* Take equal width */
-        background-color: #f8f9fa; /* Light background for About Me */
+        background-color: #f8f9fa; /* Light background */
         color: #000; /* Default text color */
         padding: 60px; /* Padding for content */
         display: flex;
@@ -45,8 +47,16 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
         margin: 10px; /* Space between sections */
         transition: background-color 0.3s ease, color 0.3s ease; /* Transition for smooth effect */
-        animation: slideInRight 3.5s forwards; /* Slower animation for entering from right */
         opacity: 0; /* Initial opacity for animation */
+        animation: fadeIn 1.5s forwards;
+      }
+
+      .about-content {
+        animation: slideInRight 1.5s forwards;
+      }
+
+      .tech-stack {
+        animation: slideInLeft 1.5s forwards;
       }
 
       @keyframes slideInRight {
@@ -60,7 +70,20 @@
         }
       }
 
-      .about-content:hover {
+      @keyframes slideInLeft {
+        0% {
+          transform: translateX(-100%); /* Start from left */
+          opacity: 0; /* Fully transparent */
+        }
+        100% {
+          transform: translateX(0); /* End at original position */
+          opacity: 1; /* Fully visible */
+        }
+      }
+
+      /* Hover effect */
+      .about-content:hover,
+      .tech-stack:hover {
         background-color: #333; /* Dark background on hover */
         color: #fff; /* White text on hover */
       }
@@ -73,39 +96,6 @@
       .about-content p {
         font-size: 1.25rem;
         line-height: 1.6; /* Improved readability */
-      }
-
-      /* Tech Stack Section */
-      .tech-stack {
-        flex: 1; /* Take equal width */
-        background-color: #f8f9fa; /* Light background for Tech Stack */
-        color: #000; /* Default text color */
-        padding: 60px; /* Padding for content */
-        display: flex;
-        flex-direction: column; /* Stack items vertically */
-        justify-content: flex-start; /* Align items to the top */
-        border-radius: 15px; /* Rounded corners */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-        margin: 10px; /* Space between sections */
-        transition: background-color 0.3s ease, color 0.3s ease; /* Transition for smooth effect */
-        animation: slideInLeft 3.5s forwards; /* Slower animation for entering from left */
-        opacity: 0; /* Initial opacity for animation */
-      }
-
-      @keyframes slideInLeft {
-        0% {
-          transform: translateX(-100%); /* Start from left */
-          opacity: 0; /* Fully transparent */
-        }
-        100% {
-          transform: translateX(0); /* End at original position */
-          opacity: 1; /* Fully visible */
-        }
-      }
-
-      .tech-stack:hover {
-        background-color: #333; /* Dark background on hover */
-        color: #fff; /* White text on hover */
       }
 
       .tech-stack h2 {
@@ -187,6 +177,70 @@
 
       .navbar .search-box input:focus {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Media Queries for mobile and tablet views */
+      @media (max-width: 768px) {
+        .about-section {
+          flex-direction: column; /* Stack About and Tech Stack vertically on smaller screens */
+        }
+
+        .about-content,
+        .tech-stack {
+          margin: 0 0 20px 0; /* Add margin only at the bottom */
+          padding: 40px; /* Reduce padding for smaller devices */
+        }
+
+        .about-content h1 {
+          font-size: 2rem; /* Reduce font size on smaller screens */
+        }
+
+        .about-content p {
+          font-size: 1rem;
+        }
+
+        .tech-stack h2 {
+          font-size: 1.5rem; /* Adjust heading size */
+        }
+
+        .tech-logos {
+          justify-content: center; /* Center tech logos on smaller screens */
+        }
+
+        .tech-logo {
+          width: 50px; /* Adjust logo size */
+        }
+      }
+
+      @media (max-width: 576px) {
+        body {
+          padding-top: 90px; /* Increased padding for mobile navbar */
+        }
+
+        .about-content,
+        .tech-stack {
+          padding: 20px; /* Further reduce padding for mobile */
+        }
+
+        .about-content h1 {
+          font-size: 1.5rem; /* Further reduce font size */
+        }
+
+        .about-content p {
+          font-size: 0.9rem;
+        }
+
+        .tech-stack h2 {
+          font-size: 1.25rem;
+        }
+
+        .tech-logos {
+          justify-content: center; /* Center logos on mobile */
+        }
+
+        .tech-logo {
+          width: 40px; /* Further adjust logo size */
+        }
       }
     </style>
   </head>
